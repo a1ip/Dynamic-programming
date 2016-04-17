@@ -11,7 +11,7 @@ pname=$(echo "$basezipname" | sed 's/^problemzipdownload-pid-[0-9a-f]\{4\}-[0-9a
 
 rt="$(pwd)/$pname"
 
-rm -rf "/tmp/$name"
+rm -rf "/tmp/$pname"
 mkdir -p "/tmp/$pname"
 rm -rf "$rt"
 mkdir -p "$rt"
