@@ -1,0 +1,166 @@
+\documentclass[14pt]{book}
+
+\usepackage[
+  a4paper, mag=1000,
+  left=2cm, right=1cm, top=2cm, bottom=2cm, headsep=0.7cm, footskip=1.27cm
+]{geometry}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{cmap}
+\usepackage{pscyr} % Нормальные шрифты
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amssymb}
+
+% Форматирование чисел
+\usepackage{siunitx}
+\sisetup{range-phrase = \ldots}
+
+% оглавление + ссылки
+\usepackage[pdftex]{hyperref}
+
+\hypersetup{%
+    pdfborder = {0 0 0},
+    colorlinks,
+    citecolor=red,
+    filecolor=Darkgreen,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{hypcap}
+\usepackage[numbered]{bookmark} % для цифр в закладках в pdf viewer'ов
+
+\usepackage{tocloft}
+
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+
+% листинги
+\usepackage{listings}
+\usepackage{color}
+\definecolor{commentGreen}{rgb}{0,0.6,0}
+\usepackage{caption} % для подписей под листингами и таблиц
+%\usepackage[scaled]{beramono}
+
+% графика
+\usepackage[pdftex]{graphicx}
+\graphicspath{{./fig/}} % папка с изображениями
+
+%\usepackage{setspace} % для полуторного интервала
+%\onehalfspacing % сам полуторный интервал
+
+\usepackage{indentfirst} % отступ в первом абзаце
+
+% точки в секция и подсекциях
+\usepackage{secdot}
+\sectiondot{subsection}
+
+% Подавление висячих строк
+\clubpenalty=10000
+\widowpenalty=10000
+
+% колонтитулы
+%\usepackage{fancybox,fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead[C]{\small{C++ and Qt}} % шапка верхнего колонтитула!!!
+%\fancyfoot[C]{\small{\thepage}} % шапка нижнего колонтитула!!!
+
+% стили листингов кодов
+
+\lstdefinestyle{CPlusPlus}{
+  language=C++,
+  basicstyle=\small\ttfamily,
+  breakatwhitespace=true,
+  breaklines=true,
+  showstringspaces=false,
+  keywordstyle=\color{blue}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  commentstyle=\color{commentGreen}\ttfamily,
+  morecomment=[l][\color{magenta}]{\#},
+  numbers=left,
+  xleftmargin=1cm
+}
+
+\begin{document}
+
+\begingroup
+\hypersetup{linkcolor=black}
+\tableofcontents
+\endgroup
+
+\clearpage
+
+\chapter{Рекуррентные соотношения}
+
+$C_n$, $F_n$
+
+\section{Числа Фибоначчи}
+\section{Домино}
+\section{Размен}
+\section{Решение рекуррентных соотношений}
+\section{Производящие функции}
+\section{Свертки}
+\chapter{Динамическое программирование}
+\chapter{Перебор и динамическое программирование}
+
+\chapter{Упражнения}
+\begin{enumerate}
+\item Один эксцентричный коллекционер покрытий при помощи домино $2 \times n$-прямоугольника
+платит 4 доллара за каждую вертикально расположенную костяшку и 1 доллар --- за горизонтальную.
+Сколько покрытий будут оценены по этому способу ровно в $m$ долларов? Например, для $m=6$ имеем
+три решения: |=, =| и ===.
+
+\item Решите рекуррентное соотношение
+$$
+\begin{array}{ll}
+g_0 = 1; \\
+g_n = g_{n-1} + 2g_{n-2} + \cdots + ng_0 & n>0
+\end{array}
+$$
+
+\item Сколько существует способов разместить числа ${1, 2, \ldots , 2n}$ 
+в виде массива размера $2 \times n$ так, чтобы и строки и столбцы массива
+были упорядочены по возрастанию слева направо и сверху вниз?
+Например, для $n=5$ одним из решений будет 
+$$\begin{pmatrix}
+1 & 2 & 4 & 5 & 8 \\
+3 & 6 & 7 & 9 & 10 
+\end{pmatrix}$$.
+\end{enumerate}
+
+\section{Ответы}
+\begin{enumerate}
+\item Подставим в производящую функцию $z^4$ вместо | и z вместо -. Получим функцию $1/(1-z^4-z^2)$.
+Это похоже на производящую функцию для $T$, однако $z$ заменено на $z^2$. Следовательно, 
+ответом будет $0$ для нечетных $m$ и $F_{m/2+1}$ --- для четных.
+
+\item $G(z)=(z/(1-z)^2)G(z)+1$, следовательно 
+$$G(z) = \frac{1-2z+z^2}{1-3z+z^2} = 1 + \frac{z}{1-3z+z^2};$$
+поэтому имеем $g_n=F_{2n}+[n=0]$.
+
+\item $C_n$. Числа в верхнем ряду соответствуют позициям плюс единиц в последовательности
+из $+1$ и $-1$, определяющей <<горную гряду>>; числа нижнего ряда отвечают позициям
+минус единиц. Например, приведенный в упражнении массив соответствует
+\begin{verbatim}
+    /\     
+ /\/  \/\  
+/        \ 
+\end{verbatim}.
+
+\end{enumerate}
+
+\end{document} 
