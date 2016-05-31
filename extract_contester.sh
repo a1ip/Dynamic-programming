@@ -45,7 +45,7 @@ memlimit=$(sed -n "s/^ *<MemoryLimit platform=\"native\">\([0-9]\+\)<\/MemoryLim
 problemname=$(sed -n "s/^ *<Name lang=\"ru\">\(.*\)<\/Name>/\1/p" < ${pname}.xml)
 
 echo "timelimit=\"$timelimit\"" >> "$rt/meta"
-echo "memlimit=\"$timelimit\"" >> "$rt/meta"
+echo "memlimit=\"$memlimit\"" >> "$rt/meta"
 echo "name=\"$problemname\"" >> "$rt/meta"
 echo "ntests=\"$ntests\"" >> "$rt/meta"
 
