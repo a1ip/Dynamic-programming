@@ -44,10 +44,10 @@ timelimit=$(sed -n "s/^ *<TimeLimit platform=\"native\">\([0-9]\+\)<\/TimeLimit>
 memlimit=$(sed -n "s/^ *<MemoryLimit platform=\"native\">\([0-9]\+\)<\/MemoryLimit>/\1/p" < ${pname}.xml)
 problemname=$(sed -n "s/^ *<Name lang=\"ru\">\(.*\)<\/Name>/\1/p" < ${pname}.xml)
 
-echo "timelimit=\"$timelimit\"" >> "$rt/meta"
-echo "memlimit=\"$memlimit\"" >> "$rt/meta"
+echo "timelimit=$timelimit" >> "$rt/meta"
+echo "memlimit=$memlimit" >> "$rt/meta"
 echo "name=\"$problemname\"" >> "$rt/meta"
-echo "ntests=\"$ntests\"" >> "$rt/meta"
+echo "ntests=$ntests" >> "$rt/meta"
 
 popd > /dev/null 2>&1
 
