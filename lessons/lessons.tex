@@ -1,4 +1,4 @@
-\documentclass[14pt]{book}
+\documentclass[14pt,openany]{book}
 
 \usepackage[
   a4paper, mag=1000,
@@ -21,6 +21,9 @@
 \usepackage[usenames]{color}
 \usepackage{colortbl}
 
+% собственные разделы
+\usepackage{titlesec}
+\usepackage{titletoc}
 
 % Форматирование чисел
 \usepackage{siunitx}
@@ -52,7 +55,6 @@
 \renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
 \renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries}
 \renewcommand{\cftaftertoctitle}{\hfill}
-
 
 % листинги
 \usepackage{listings}
@@ -106,6 +108,22 @@
 \lstset{inputencoding=utf8, extendedchars=\true}
 \DeclareUnicodeCharacter{00A0}{~}
 
+%% новый раздел "занятие"
+%\titleclass{\lesson}{straight}[\part]
+%\newcounter{lesson}
+%\renewcommand{\thelesson}{\arabic{lesson}}
+%
+%\titleformat{\lesson}[display]
+%  {\normalfont\Huge\bfseries}{\huge Занятие \thelesson}{20pt}{}
+%\titlespacing*{\lesson}{0pt}{50pt}{40pt}
+%
+%\titlecontents{lesson}
+%    [1.5em] % ie, 1.5em (chapter) + 2.3em
+%    {}
+%    {\bfseries\contentslabel{1.5em}}
+%    {}
+%    {\bfseries\titlerule*[1pc]{}\contentspage}
+
 % Задачи в тексте
 %\newenvironment{task}
 %    { \begin{tabular}{|p{18cm}|} \hline }
@@ -126,8 +144,9 @@
 
 \clearpage
 
-\chapter{Рекуррентные соотношения}
+\part{Занятия}
 
+\chapter{Рекуррентные соотношения}
 
 \section{Ханойская башня}
 
@@ -201,6 +220,16 @@ U_n = 2U_{n-1} & \text{при } n > 0 \\
 База индукции тривиальна --- $T_0 = 0$. Индуктивный переход: если $T_{n-1}=2^{n-1}-1$, то
 $T_n = 2T_{n-1}+1 = 2(2^{n-1}-1)+1 = 2^n - 1$. Следовательно, предположение было справедливо.
 
+\section{Как решать задачи с рекуррентностями}
+
+\begin{itemize}
+\item Рассмотреть крайние случаи. Они помогают вникнуть в задачу и проверить
+      следующие этапы.
+\item Найти математическое выражение для интересующей величины ---
+      рекуррентность, которая позволяет при заданном $n$ вычислить результат.
+\item Найти и доказать замкнутое выражение для рекуррентности.
+\end{itemize}
+
 \section{Задача о разрезании пиццы}
 
 Сколько кусков пиццы можно получить, делая $n$ прямолинейных разрезов ножом?
@@ -273,7 +302,13 @@ $$
 L_n = L_{n-1} + n = \left(\frac{1}{2}(n-1)n+1 \right)+n = \frac{1}{2}n(n+1) + 1
 $$
 
-\section{Число перестановок и факториал}
+\section{Задачи}
+
+
+% \chapter{Ещё рекуррентные соотношения}
+
+\chapter{Вычисление рекуррентностей на компьютере}
+
 \section{Числа Фибоначчи}
 
 Числа Фибоначчи определяются следующим рекуррентным соотношением:
@@ -299,6 +334,16 @@ F_n &= F_{n-1} + F_{n-2}, \text{ для $n>0$}
 \begin{task}
 Начиная с какого числа Фибоначчи переполняются стандартные типы \texttt{int} и \texttt{long long}?.
 \end{task}
+
+
+
+\part{Всё подряд}
+
+\chapter{Рекуррентные соотношения}
+
+
+
+\section{Число перестановок и факториал}
 
 \section{Домино}
 
@@ -584,16 +629,6 @@ $k-1$ участков подъёма.
 \euler{0}{k} &= [k = 0] \\
 \euler{n}{k} &= (k+1)\euler{n-1}{k} + (n-k)\euler{n-1}{k-1}, \text{ для $n>0$} \\
 \end{align*}
-
-\section{Как решать задачи с рекуррентностями}
-
-\begin{itemize}
-\item Рассмотреть крайние случаи. Они помогают вникнуть в задачу и проверить
-      следующие этапы.
-\item Найти математическое выражение для интересующей величины ---
-      рекуррентность, которая позволяет при заданном $n$ вычислить результат.
-\item Найти и доказать замкнутое выражение для рекуррентности.
-\end{itemize}
 
 
 
@@ -1188,5 +1223,7 @@ $$
 \item $F_n$.
 
 \end{enumerate}
+
+\part{Задачи}
 
 \end{document} 
