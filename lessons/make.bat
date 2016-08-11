@@ -4,5 +4,6 @@ pdflatex tasks.tex
 pdflatex lesson01.tex
 pdflatex lesson02.tex
 pdflatex lesson03.tex
+pdflatex lesson04.tex
 del *.aux
 del *.toc
